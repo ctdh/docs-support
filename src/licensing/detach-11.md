@@ -140,7 +140,7 @@ The code is structured in the following folders:
 * **DatabaseProviders** –
     * **iDB2DatabaseProvider** – the iDB2 implementation of the DatabaseAbstractionLayer used by the platform when connected to an iDB2 database.
     * **MySQLDatabaseProvider** – the MySQL implementation of the DatabaseAbstractionLayer used by the platform when connected to a MySQL database.
-    * **OracleDatabaseProvider** – the Oracle implementation of the DatabaseAbstractionLayer used by the platform when connected to an Oracle database.
+    * **OracleDatabaseProvider** – the Oracle implementation of the DatabaseAbstractionLayer used by the platform when connected to an Oracle database.  NuGet Oracle.ManagedDataAccess versions correspond to db versions, if your target db is Oracle, be careful to update only to the latest version for your target db which be earlier than the latest package version available.
     * **SQLServerDatabaseProvider** – the SQLServer implementation of the DatabaseAbstractionLayer used when connected to a SQLServer database.
 * **OutSystems\.DebuggerClient** – the debbuger protocol code.
 * **OutSystems\.Logging** – the logging system code.
@@ -319,6 +319,8 @@ Do the following:
 ### Preparing the database to host the data of your applications
 
 Your application data will be preserved either in the same databases/schemas and database server, or by moving the databases/schemas from the current database server to a new one.
+
+If you are using Oracle, then be careful only to update the Oracle.ManagedDataAccess package to the most recent package compatible with your target db.  The Oracle.ManagedDataAccess package versions are associated with db version 19.x and 21.x etc.
 
 If you're keeping the same database, follow the procedure in [Using the database that previously kept the OutSystems data](#use-existing-db). If you're moving to a new database server, follow the instructions in [Using a brand new database](#use-new-db).
 
