@@ -634,15 +634,23 @@ Extension modules don't generate source code. As such, source code for custom ex
 
 ### Microsoft Excel files
 
-If your application handles, either reads or writes, data stored in MS Excel files, you must change the `SetLicense()` method.
+If your application handles, either reads or writes, data stored in MS Excel files, you must change the `SetLicense()` method.  
 
-To setup the professional license you need to:
+The latest versions of Gembox use the same file for free and paid licences, where as v35 had different files.  The latest versions of GemBox uses the same dll for free and trial licences.  Outsystems bundles v35.1.30.1060 in the detach source code; there are [multiple obsolete members](https://archive.gemboxsoftware.com/spreadsheet/help45/help/html/Obsolete_Members.htm#ExcelFileLoadXls3) in this version that need to be updated to establish compatibility with the latest version from Gembox.  To avoid updating Gembox.Reader.cs and Gembox.Writer.cs to conform to the latest version of Gembox, you can use the latest compatible version of Gembox.Spreadsheet which is v35.3.30.1115.
 
-1. Find the `SetLicense()` method on `RuntimePlatform\GemBoxLicensing.cs` and set the method to use your own Gembox Spreadsheet license.
+To setup the professional license to v35.3.30.1115 you need to:
 
-1. Request from GemBox a DLL for the GemBox Professional version.
+1.  Purchase a suitable licence from https://www.gemboxsoftware.com/
+   
+2.  Request a new licence key from info@gemboxsoftware.com for Gembox.Spreadsheet v35.3.30.1115 in the form XXXX-XXXX-XXXX-XXXX (this is different to the licence key for the latest versions), download the legacy version of Gembox.Spreadsheet v35.3.30.1115 zip from https://www.gemboxsoftware.com/spreadsheet/pro/S35JKSRZS90/BugFixes.htm.
 
-1. Go to the detached source code solution and, in **References**, replace the GemBox free version DLL with the Professional version DLL. Do this in both `RuntimePlatform` and application projects.
+3.  Unpack the zip into the /<application>/ThirdParty/GemboxSpreadSheet/Bin folder of your source code.
+
+4.  Go to the detached source code solution and, in **References**, delete the GemBox free version DLL with the Professional version DLL in the application projects.  Then **Add Reference** to the application porject pointing to the dll in the /<application>/ThirdParty/GemboxSpreadSheet/Bin/GBS35v1115Professional/ folder.
+   
+5.  Open the Outsystems.Spreadhseet Class Library **Project File** and edit the Reference Include="GemBox.Spreadsheet" entry so the path points to ..\ThirdParty\GemboxSpreadSheet\Bin\GBS35v1115Professional\GemBox.Spreadsheet.dll.
+
+6. Find the `SetLicense()` method on `RuntimePlatform\GemBoxLicensing.cs` and set the method to use your own Gembox Spreadsheet license.
 
 In case of not having such a license, you can use the limited Gembox Spreadsheet free edition. Although this license offers the same performance as the paid version, there are limitations in the number of rows per sheet, and the number of sheets per workbook. You should investigate these values further, since they're subject to change.
 
