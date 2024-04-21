@@ -677,7 +677,7 @@ If no error was found there's a great chance you followed everything correctly, 
 
 * Stop all OutSystems services.
 
-* Store a copy of `C:\Program Files\OutSystems\Platform Server` on another location. After that, you can either change the name of `C:\Program Files\OutSystems\Platform Server`, for example to `C:\Program Files\OutSystems1\Platform Server`, or delete this folder.
+* Store a copy of `C:\Program Files\OutSystems\Platform Server` on another location, first go to IIS Manager and stop the web server. After that, you can either change the name of `C:\Program Files\OutSystems\Platform Server`, for example to `C:\Program Files\OutSystems1\Platform Server`, or delete this folder.
 
 This way you can simulate an uninstall and you should be able to access all your applications.
 
